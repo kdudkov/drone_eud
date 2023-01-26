@@ -6,7 +6,7 @@ import time
 
 import pygame
 
-from widgets import DisplayGyro
+from widgets import DisplayGyro, Compass
 
 
 class App(object):
@@ -25,7 +25,9 @@ class App(object):
 
     def run(self):
         loop = asyncio.get_event_loop()
-        self.widgets.append(DisplayGyro(pygame.Rect(0, 0, 250, 250)))
+        w = 300
+        self.widgets.append(DisplayGyro(pygame.Rect(0, 0, w, w)))
+        self.widgets.append(Compass(pygame.Rect(w, 0, w, w)))
         self.running = True
 
         fut = asyncio.ensure_future(self.pygame_loop(), loop=loop)
@@ -68,6 +70,7 @@ class App(object):
         while self.running:
             self.data['roll'] = self.data.get('roll', 0.0) + float(random.randint(0, 100) - 50) / 20
             self.data['pitch'] = self.data.get('pitch', 0.0) + float(random.randint(0, 100) - 50) / 20
+            self.data['yaw'] = self.data.get('yaw', 0.0) + float(random.randint(0, 100) - 50) / 20
 
             await asyncio.sleep(0.2)
 
