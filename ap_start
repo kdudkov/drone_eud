@@ -1,0 +1,6 @@
+#!/bin/bash
+
+wifi=wlp1s0
+
+sudo systemctl restart hostapd
+sudo ip addr add 192.168.0.1/24 dev $wifi

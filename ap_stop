@@ -1,0 +1,5 @@
+#!/bin/bash
+
+wifi=wlp1s0
+
+sudo systemctl stop hostapd
